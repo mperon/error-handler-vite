@@ -1,0 +1,71 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+  "recommendations": [
+    // Syntax highlighting and more for .vue files
+    "Vue.volar",
+    // Peek and go-to-definition for .vue files
+    // https://github.com/fuzinato/vscode-vue-peek
+    "dariofuzinato.vue-peek",
+    // Lint-on-save with ESLint
+    // https://github.com/microsoft/vscode-eslint
+    "dbaeumer.vscode-eslint",
+    // Format-on-save with Prettier
+    // https://github.com/prettier/prettier-vscode
+    "esbenp.prettier-vscode",
+    // SCSS intellisense
+    // https://github.com/mrmlnc/vscode-scss
+    "mrmlnc.vscode-scss",
+    // Test `.unit.js` files on save with Jest
+    // https://github.com/jest-community/vscode-jest
+    //"Orta.vscode-jest",
+    // XML Tools for Visual Studio Code
+    // https://marketplace.visualstudio.com/items?itemName=DotJoshJohnson.xml
+    "DotJoshJohnson.xml",
+    // Get the Material Design icons into your VS Code.
+    // https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+    "PKief.material-icon-theme",
+    // Visual Studio IntelliCode
+    // https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
+    "VisualStudioExptTeam.vscodeintellicode",
+    //
+    //
+    "Zignd.html-css-class-completion",
+    //
+    //
+    "aaron-bond.better-comments",
+    //
+    //
+    "alefragnani.Bookmarks",
+    //
+    //
+    "christian-kohler.npm-intellisense",
+    //
+    //
+    "christian-kohler.path-intellisense",
+    //
+    //
+    "codezombiech.gitignore",
+    //
+    //
+    "dariofuzinato.vue-peek",
+    //
+    //
+    "humao.rest-client",
+    //
+    //
+    "jasonnutter.search-node-modules",
+    //
+    //
+    "wayou.vscode-todo-highlight",
+    //
+    //
+    "dkneeland.yarn-task-provider",
+    //
+    //
+    "shd101wyy.markdown-preview-enhanced",
+    //
+    //
+    "mikestead.dotenv"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "name": "error-handler-vite",
+  "version": "1.0.0",
+  "private": false,
+  "main": "src/main.ts",
+  "packageManager": "yarn@1.22.19",
+  "description": "Error Handler sample for dev.to article",
+  "keywords": [
+    "error",
+    "handler",
+    "vue",
+    "ajax",
+    "javascript",
+    "vite",
+    "typescript",
+    "axios"
+  ],
+  "homepage": "https://mperon.org/",
+  "bugs": {
+    "url": "https://github.com/mperon/error-handler-vite/issues",
+    "email": "contato@mperon.org"
+  },
+  "author": "Marcos Peron <contato@mperon.org> (http://mperon.org/)",
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/mperon"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "yarn version --patch && vite build",
+    "build:test": "vite build --mode test",
+    "preview": "vite build && vite preview",
+    "preview:dist": "vite preview",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint:format": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "type:check": "vue-tsc --noEmit --skipLibCheck",
+    "clean": "rm -rf dist",
+    "clean:lib": "rm -rf {dist,node_modules,.eslintcache} && yarn install",
+    "clean:cache": "rm -rf node_modules/{.vite,.cache}"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.14.2",
+    "@unocss/reset": "^0.33.5",
+    "axios": "^0.27.2",
+    "date-fns": "2.27.0",
+    "mitt": "3.0.0",
+    "pinia": "^2.0.14",
+    "quasar": "^2.7.5",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.1"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.0.10",
+    "@types/node": "18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "autoprefixer": "10.4.7",
+    "dotenv": "12.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "postcss": "8.4.14",
+    "postcss-import": "14.1.0",
+    "prettier": "2.7.1",
+    "sass": "1.53.0",
+    "typescript": "^4.7.4",
+    "unocss": "^0.43.2",
+    "vite": "^2.9.13",
+    "vue-tsc": "^0.34.17"
+  }
+}

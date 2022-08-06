@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/src/assets/img/fav/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/src/assets/img/fav/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/src/assets/img/fav/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/src/assets/img/fav/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/src/assets/img/fav/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/src/assets/img/fav/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/src/assets/img/fav/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/src/assets/img/fav/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/src/assets/img/fav/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/src/assets/img/fav/android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/fav/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/src/assets/img/fav/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/fav/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/src/assets/img/fav/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="favicon.ico" />
+    <title> Error Handler® </title>
+    <style>
+      .nspl {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 100;
+        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .nspt {
+        font-family: 'Roboto', '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        font-size: 16px;
+        padding-top: 16px;
+      }
+      #noscr {
+        z-index: 99;
+        margin: -200px 0 0 -250px;
+        height: 400px;
+        width: 500px;
+        background-color: white;
+      }
+      #nalp {
+        z-index: 101;
+      }
+      #nalps {
+        width: 120px;
+        height: 120px;
+        margin: -114px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      #naplt {
+        margin: 0 0 0 -76px;
+      }
+
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="nalp" class="nspl">
+        <div id="nalps"></div>
+        <div id="naplt" class="nspt">Carregando... Aguarde!</div>
+      </div>
+    </div>
+    <noscript>
+      <div id="noscr" class="nspl">
+        <div id="noscri">
+          <img
+            width="200"
+            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4yIiBiYXNlUHJvZmlsZT0idGlueSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiDQoJIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMjAgMTYiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0Q2MUYzMyIgZD0iTTEwLDBMMCwxNmgyMEwxMCwweiBNMTEsMTMuOTA4SDl2LTJoMlYxMy45MDh6IE05LDEwLjkwOHYtNmgydjZIOXoiLz4NCjwvc3ZnPg0K"
+          />
+        </div>
+        <div id="noscrt" class="nspt">
+          Sentimos muito, mas <strong>Error Handler®</strong> não funciona normalmente sem o
+          JavaScript ativado. <br />
+          <br />Por favor, ative-o para continuar...
+        </div>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

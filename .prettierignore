@@ -1,0 +1,6 @@
+**/*.sh
+**/*.svg
+/dist/**
+/node_modules/**
+/public/*
+/tests/unit/coverage/**
