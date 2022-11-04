@@ -1,25 +1,25 @@
 Introduction
-I really love the problem/solution. approach. We see some problem, and then, a really nice solution. But for this talking, i think we need some introduction as well.
+I really love the problem/solution approach. We see some problem, and then, a really nice solution. But for this talking, I think we need some introduction as well.
 
-When you develop an web application, you generally want's to separate the frontend and backend. Fo that, you need something that makes the communication between these guys.
+When you develop a web application, you generally want to separate the frontend and backend. For that, you need something that makes the communication between these guys.
 
-To illustrate, you can build a frontend (commonly named as GUI or user interface) using vanilla HTML, CSS and Javascript, or, frequently, using several frameworks like Vue, React and so many more avaliable online. I marked Vue because it's my personal preference.
+To illustrate, you can build a frontend (commonly named GUI or user interface) using vanilla HTML, CSS and JavaScript, or, frequently, using several frameworks like Vue, React and so many more available online. I marked Vue because it's my personal preference.
 
-Why? I really don't study the others so deeply that i can't assure to you that Vue is the best, but i liked the way he works, the syntax, and so on. It's like your crush, it's a personal choice.
+Why? I really don't study the others so deeply that I can't assure you that Vue is the best, but I liked the way he works, the syntax, and so on. It's like your crush, it's a personal choice.
 
-But, beside that, any framework you use, you will face the same problem:_ How to communicate with you backend_ (that can be written in so many languages, that i will not dare mention some. My current crush? Python an Flask).
+But, besides that, in any framework you use, you will face the same problem: How to communicate with your backend? (which can be written in so many languages, that I will not dare mention some. My current crush? Python and Flask).
 
-One solution is to use AJAX (What is AJAX? Asynchronous JavaScript And XML). You can use XMLHttpRequest directly, to make requests to backend and get the data you need, but the downside is that the code is verbose. You can use Fetch API that will make an abstraction on top of XMLHttpRequest, with a powerfull set of tools. Other great change is that Fetch API will use Promises, avoiding the callbacks from XMLHttpRequest (preventing the callback hell).
+One solution is to use AJAX (What is AJAX? Asynchronous JavaScript And XML). You can use XMLHttpRequest directly, to make requests to backend and get the data you need, but the downside is that the code is verbose. You can use Fetch API that will make an abstraction on top of XMLHttpRequest, with a powerful set of tools. Another great change is that Fetch API will use Promises, avoiding the callbacks from XMLHttpRequest (preventing the callback hell).
 
-Alternatively, we have a awesome library named Axios, that have a nice API (for curiosity purposes, under the hood, uses XMLHttpRequest, giving a very wide browser support). The Axios API wraps the XMLHttpRequest into Promises, different from Fetch API. Beside that, nowadays Fetch API is well supported by the browsers engines available, and have polyfills for older browsers. I will not discuss which one is better because i really think is personal preference, like any other library or framework around. If you dont't have an opinion, i suggest that you seek some comparisons and dive deep articles. Has a nice article that i will mention to you written by Faraz Kelhini.
+Alternatively, we have an awesome library named Axios, that has a nice API (for curiosity purposes, under the hood, uses XMLHttpRequest, giving a very wide browser support). The Axios API wraps the XMLHttpRequest into Promises, different from Fetch API. Besides that, nowadays Fetch API is well supported by the browser engines available, and have polyfills for older browsers. I will not discuss which one is better because I really think is a personal preference, like any other library or framework around. If you don't have an opinion, I suggest that you seek some comparisons and dive deep into some articles. A nice article that I will mention to you is one written by Faraz Kelhini.
 
-My personal choice is Axios because have a nice API, has Response timeout, automatic JSON transformation, and Interceptors (we will use them in the proposal solution), and so much more. Nothing that cannot be accomplished by Fetch API, but has another approach.
+My personal choice is Axios because it has a nice API, Response timeout, automatic JSON transformation, Interceptors (we will use them in the proposed solution), and so much more. Nothing that can't be accomplished by Fetch API, but with another approach.
 
 The Problem
 Talking about Axios, a simple GET HTTP request can be made with these lines of code:
 import axios from 'axios'
 
-//here we have an generic interface with basic structure of a api response:
+//here we have a generic interface with a basic structure of an API response:
 interface HttpResponse<T> {
   data: T[]
 }
@@ -36,24 +36,24 @@ axios.get<HttpResponse<User>>('/users').then((response) => {
   const userList = response.data
   console.log(userList)
 })
-We've used Typescript (interfaces, and generics), ES6 Modules, Promises, Axios and Arrow Functions. We will not touch them deeply, and will presume that you already know about them.
+We've used Typescript (interfaces and generics), ES6 Modules, Promises, Axios, and Arrow Functions. We will not touch them deeply and will presume that you already know about them.
 
-So, in the above code, if everything goes well, aka: the server is online, the network is working perfectly, so on, when you run this code you will see the list of users on console. The real life isn't always perfect.
+So, in the above code, if everything goes well, aka the server is online, the network is working perfectly, and so on, when you run this code you will see the list of users on the console. Real life isn't always perfect.
 
 We, developers, have a mission:
 
 Make the life of users simple!
 
-So, when something is go bad, we need to use all the efforts in ours hands to resolve the problem ourselves, without the user even notice, and, when nothing more can be done, we have the obligation to show them a really nice message explaining what goes wrong, to easy theirs souls.
+So, when something goes bad, we need to gather all the efforts in our hands to solve the problem ourselves, without the user even noticing, and, when nothing more can be done, we have the obligation to show them a really nice message explaining what went wrong, to rest their souls.
 
-Axios like Fetch API uses Promises to handle asynchronous calls and avoid the callbacks that we mention before. Promises are a really nice API and not to difficult to understand. We can chain actions (then) and error handlers (catch) one after another, and the API will call them in order. If an Error occurs in the Promise, the nearest catch is found and executed.
+Axios, like Fetch API, uses Promises to handle asynchronous calls and avoid the callbacks that we mentioned before. Promises are a really nice API and not too difficult to understand. We can chain actions (then) and error handlers (catch) one after another, and the API will call them in order. If an Error occurs in the Promise, the nearest catch is found and executed.
 
-So, the code above with basic error handler will become:
+So, the code above with a basic error handler will become:
 import axios from 'axios'
 
-//..here go the types, equal above sample.
+//..here go the types, just like the sample above.
 
-//here we call axios and passes generic get with HttpResponse<User>.
+//here we call Axios and pass a generic get with HttpResponse<User>.
 axios
   .get<HttpResponse<User>>('/users')
   .then((response) => {
@@ -62,20 +62,20 @@ axios
   })
   .catch((error) => {
     //try to fix the error or
-    //notify the users about somenthing went wrong
+    //notify the users about something wrong
     console.log(error.message)
   })
-Ok, and what is the problem then? Well, we have a hundred errors that, in every API call, the solution/message is the same. For curiosity, Axios show us a little list of them: ERR_FR_TOO_MANY_REDIRECTS, ERR_BAD_OPTION_VALUE, ERR_BAD_OPTION, ERR_NETWORK, ERR_DEPRECATED, ERR_BAD_RESPONSE, ERR_BAD_REQUEST, ERR_CANCELED, ECONNABORTED, ETIMEDOUT. We have the HTTP Status Codes, where we found so many errors, like 404 (Page Not Found), and so on. You get the picture. We have too much common errors to elegantly handle in every API request.
+Ok, and what is the problem then? Well, we have a hundred errors that, in every API call, the solution/message is the same. For curiosity, Axios show us a little list of them: ERR_FR_TOO_MANY_REDIRECTS, ERR_BAD_OPTION_VALUE, ERR_BAD_OPTION, ERR_NETWORK, ERR_DEPRECATED, ERR_BAD_RESPONSE, ERR_BAD_REQUEST, ERR_CANCELED, ECONNABORTED, ETIMEDOUT. We have the HTTP Status Codes, where we found so many errors, like 404 (Page Not Found), and so on. You get the picture. We have too many common errors to elegantly handle in every API request.
 
 The very ugly solution
 One very ugly solution that we can think of, is to write one big ass function that we increment every new error we found. Besides the ugliness of this approach, it will work, if you and your team remember to call the function in every API request.
 function httpErrorHandler(error) {
   if (error === null) throw new Error('Unrecoverable error!! Error is null!')
   if (axios.isAxiosError(error)) {
-    //here we have a type guard check, error inside this if will be treated as AxiosError
+    //here we have a type guard check, an error inside this if will be treated as AxiosError
     const response = error?.response
     const request = error?.request
-    const config = error?.config //here we have access the config used to make the api call (we can make a retry using this conf)
+    const config = error?.config //here we have access to the config used to make the API call (we can make a retry using this conf)
 
     if (error.code === 'ERR_NETWORK') {
       console.log('connection problems..')
@@ -83,13 +83,13 @@ function httpErrorHandler(error) {
       console.log('connection canceled..')
     }
     if (response) {
-      //The request was made and the server responded with a status code that falls out of the range of 2xx the http status code mentioned above
+      //The request was made and the server responded with a status code that falls out of the range of 2xx the HTTP status code mentioned above
       const statusCode = response?.status
       if (statusCode === 404) {
         console.log('The requested resource does not exist or has been deleted')
       } else if (statusCode === 401) {
-        console.log('Please login to access this resource')
-        //redirect user to login
+        console.log('Please log in to access this resource')
+        //redirect the user to login
       }
     } else if (request) {
       //The request was made but no response was received, `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in Node.js
@@ -108,32 +108,32 @@ axios
     console.log(userList)
   })
   .catch(httpErrorHandler)
-We have to remember to add this catch in every API call, and, for every new error that we can graciously handle, we need to increase our nasty httpErrorHandler with some more code and ugly if's.
+We have to remember to add this catch in every API call, and, for every new error that we can graciously handle, we need to increase our nasty httpErrorHandler with some more code and ugly ifs.
 
-Other problem we have with this approach, besides ugliness and lack of mantenability, is that, if in one, only single one API call, i desire to handle different from global approach, i cannot do.
+Another problem we have with this approach, besides ugliness and lack of maintainability, is that, if in one, only a single API call, I desire to handle differently from the global approach, I can't.
 
-The function will grow exponentially as the problems that came together. This solution will not scale right!
+The function will grow exponentially as the problems arise. This solution will not scale right!
 
 The elegant and recommended solution
-When we work as a team, to make them remember the slickness of every piece of software is hard, very hard. Team members, come and go, and i do not know any documentation good enough to surpass this issue.
+When we work as a team, making them remember the slickness of every piece of software is hard, very hard. Team members, come and go, and I do not know any documentation good enough to surpass this issue.
 
-In other hand, if the code itself can handle these problems on a generic way, do-it! The developers cannot make mistakes if they need do nothing!
+On the other hand, if the code itself can handle these problems in a generic way, do it! The developers cannot make mistakes if they need to do nothing!
 
-Before we jump into code (that is what we expect from this article), i have the need to speak some stuff to you understand what the codes do.
+Before we jump into code (that is what we expect from this article), I have the need to speak some stuff so you can understand what the codes do.
 
-Axios allow we to use something called Interceptors that will be executed in every request you make. It's a awesome way of checking permission, add some header that need to be present, like a token, and preprocess responses, reducing the amount of boilerplate code.
+Axios allows us to use something called Interceptors that will be executed in every request you make. It's an awesome way of checking permissions, adding some headers that need to be present, like a token, and preprocessing responses, reducing the amount of boilerplate code.
 
-We have two types of Interceptors. Before (request) and After (response) an AJAX Call.
+We have two types of Interceptors: Before (request) and After (response) an AJAX Call.
 
-It's use is simple as that:
-//Intercept before request is made, usually used to add some header, like an auth
+Its use is simple as that:
+//Intercept before the request is made, usually used to add some header, like an auth
 const axiosDefaults = {}
 const http = axios.create(axiosDefaults)
 //register interceptor like this
 http.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
-    const token = window.localStorage.getItem('token') //do not store token on localstorage!!!
+    // Do something before the request is sent
+    const token = window.localStorage.getItem('token') //do not store token on localStorage!!!
     config.headers.Authorization = token
     return config
   },
@@ -142,18 +142,18 @@ http.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-But, in this article, we will use the response interceptor, because is where we want to deal with errors. Nothing stops you to extend the solution to handle request errors as well.
+But, in this article, we will use the response interceptor, because that is where we want to deal with the errors. Nothing stops you to extend the solution to handle request errors as well.
 
-An simple use of response interceptor, is to call ours big ugly function to handle all sort of errors.
+A simple use of a response interceptor is to call our big ugly function to handle all sorts of errors.
 
-As every form of automatic handler, we need a way to bypass this (disable), when we want. We are gonna extend the AxiosRequestConfig interface and add two optional options raw and silent. If raw is set to true, we are gonna do nothing. silent is there to mute notifications that we show when dealing with global errors.
+As with every form of automatic handlers, we need a way to bypass this (disable) whenever we want. We are gonna extend the AxiosRequestConfig interface and add two optional options raw and silent. If raw is set to true, we are gonna do nothing. silent is there to mute notifications that we show when dealing with global errors.
 declare module 'axios' {
   export interface AxiosRequestConfig {
     raw?: boolean
     silent?: boolean
   }
 }
-Next step is to create a Error class that we will throw every time we want to inform the error handler to assume the problem.
+The next step is to create an Error class that we will throw every time we want to inform the error handler to assume the problem.
 export class HttpError extends Error {
   constructor(message?: string) {
     super(message) // 'Error' breaks prototype chain here
@@ -162,8 +162,8 @@ export class HttpError extends Error {
   }
 }
 Now, let's write the interceptors:
-// this interceptor is used to handle all success ajax request
-// we use this to check if status code is 200 (success), if not, we throw an HttpError
+// this interceptor is used to handle all successful ajax requests
+// we use this to check if the status code is 200 (success), if not, we throw an HttpError
 // to our error handler take place.
 function responseHandler(response: AxiosResponse<any>) {
   const config = response?.config
@@ -185,7 +185,7 @@ function responseErrorHandler(response) {
   if (config.raw) {
     return response
   }
-  // the code of this function was written in above section.
+  // the code of this function was written in the above section.
   return httpErrorHandler(response)
 }
 
@@ -194,7 +194,7 @@ const axiosDefaults = {}
 const http = axios.create(axiosDefaults)
 //register interceptor like this
 http.interceptors.response.use(responseHandler, responseErrorHandler)
-Well, we do not need to remember our magical badass function in every ajax call we made. And, we can disable when we want, just passing raw to request config.
+Well, we do not need to remember our magical badass function in every ajax call we make. And, we can disable it when we want, just passing raw to request config.
 import axios from 'axios'
 
 // automagically handle error
@@ -215,25 +215,25 @@ axios
   }).catch(() {
     console.log("Manually handle error")
   })
-Ok, this is a nice solution, but, this bad-ass ugly function will grow so much, that we cannot see the end. The function will become so big, that anyone will want to maintain.
+Ok, this is a nice solution, but, this bad-ass ugly function will grow so much, that we cannot see the end. The function will become so big, that no one will want to maintain it.
 
 Can we improve more? Oh yeahhh.
 
 The IMPROVED and elegant solution
-We are gonna develop an Registry class, using Registry Design Pattern. The class will allow you to register error handling by an key (we will deep dive in this in a moment) and a action, that can be an string (message), an object (that can do some nasty things) or an function, that will be executed when the error matches the key. The registry will have parent that can be placed to allow you override keys to custom handle scenarios.
+We are gonna develop a Registry class, using Registry Design Pattern. The class will allow you to register error handling by a key (we will deep dive into this in a moment) and an action, which can be a string (message), an object (that can do some nasty things), or a function, that will be executed when the error matches the key. The registry will have a parent that can be placed to allow you to override keys to handle custom scenarios.
 
-Here are some types that we will use througth the code:
-// this interface is the default response data from ours api
+Here are some types that we will use through the code:
+// this interface is the default response data from our API
 interface HttpData {
   code: string
   description?: string
   status: number
 }
 
-// this is all errrors allowed to receive
+// this is all errors allowed to receive
 type THttpError = Error | AxiosError | null
 
-// object that can be passed to our registy
+// object that can be passed to our registry
 interface ErrorHandlerObject {
   after?(error?: THttpError, options?: ErrorHandlerObject): void
   before?(error?: THttpError, options?: ErrorHandlerObject): void
@@ -241,13 +241,13 @@ interface ErrorHandlerObject {
   notify?: QNotifyOptions
 }
 
-//signature of error function that can be passed to ours registry
+//signature of an error function that can be passed to our registry
 type ErrorHandlerFunction = (error?: THttpError) => ErrorHandlerObject | boolean | undefined
 
 //type that our registry accepts
 type ErrorHandler = ErrorHandlerFunction | ErrorHandlerObject | string
 
-//interface for register many handlers once (object where key will be presented as search key for error handling
+//interface for registering many handlers at once (object where the key will be presented as a search key for error handling)
 interface ErrorHandlerMany {
   [key: string]: ErrorHandler
 }
@@ -259,7 +259,7 @@ function isErrorHandlerObject(value: any): value is ErrorHandlerObject {
   }
   return false
 }
-So, with types done, let's see the class implementation. We are gonna use an Map to store object/keys and a parent, that we will seek if the key is not found in the current class. If parent is null, the search will end. On construction, we can pass an parent,and optionally, an instance of ErrorHandlerMany, to register some handlers.
+So, with types done, let's see the class implementation. We are gonna use a Map to store object/keys and a parent, that we will seek if the key is not found in the current class. If the parent is null, the search will end. On construction, we can pass a parent, and optionally, an instance of ErrorHandlerMany, to register some handlers.
 class ErrorHandlerRegistry {
   private handlers = new Map<string, ErrorHandler>()
 
@@ -270,7 +270,7 @@ class ErrorHandlerRegistry {
     if (typeof input !== 'undefined') this.registerMany(input)
   }
 
-  // allow to register an handler
+  // allow to register a handler
   register(key: string, handler: ErrorHandler) {
     this.handlers.set(key, handler)
     return this
@@ -289,7 +289,7 @@ class ErrorHandlerRegistry {
     return this.parent?.find(seek)
   }
 
-  // pass an object and register all keys/value pairs as handler.
+  // pass an object and register all keys/value pairs as handlers.
   registerMany(input: ErrorHandlerMany) {
     for (const [key, value] of Object.entries(input)) {
       this.register(key, value)
@@ -323,16 +323,16 @@ class ErrorHandlerRegistry {
     return false
   }
 
-  // if the error is an ErrorHandlerObject, handle here
+  // if the error is an ErrorHandlerObject, handle it here
   handleErrorObject(error: THttpError, options: ErrorHandlerObject = {}) {
     options?.before?.(error, options)
     showToastError(options.message ?? 'Unknown Error!!', options, 'error')
     return true
   }
 
-  // this is the function that will be registered in interceptor.
+  // this is the function that will be registered in the interceptor.
   resposeErrorHandler(this: ErrorHandlerRegistry, error: THttpError, direct?: boolean) {
-    if (error === null) throw new Error('Unrecoverrable error!! Error is null!')
+    if (error === null) throw new Error('Unrecoverable error!! Error is null!')
     if (axios.isAxiosError(error)) {
       const response = error?.response
       const config = error?.config
@@ -356,19 +356,19 @@ class ErrorHandlerRegistry {
     } else if (error instanceof Error) {
       return this.handleError(error.name, error)
     }
-    //if nothings works, throw away
+    //if nothing works, throw it away
     throw error
   }
 }
 // create ours globalHandlers object
 const globalHandlers = new ErrorHandlerRegistry()
-Let's deep dive the resposeErrorHandler code. We choose to use key as an identifier to select the best handler for error. When you look at the code, you see that has an order that key will be searched in the registry. The rule is, search for the most specific to the most generic.
+Let's deep dive the resposeErrorHandler code. We choose to use a key as an identifier to select the best handler for error. When you look at the code, you see that has an order that the key will be searched in the registry. The rule is, search for the most specific to the most generic.
 const seekers = [
-  data?.code, //Our api can send an error code to you personalize the error messsage.
+  data?.code, //Our API can send an error code to you personalize the error messsage.
   error.code, //The AxiosError has an error code too (ERR_BAD_REQUEST is one).
   error?.name, //Error has a name (class name). Example: HttpError, etc..
-  String(data?.status), //Our api can send an status code as well.
-  String(response?.status), //respose status code. Both based on Http Status codes.
+  String(data?.status), //Our API can send a status code as well.
+  String(response?.status), //response status code. Both based on HTTP Status codes.
 ]
 This is an example of an error sent by API:
 {
@@ -378,24 +378,24 @@ This is an example of an error sent by API:
   "errors": [],
   "status": 400
 }
-Other example, as well:
+Another example, as well:
 {
   "code": "no_input_data",
-  "description": "You doesnt fill input fields!",
+  "description": "You didn't fill the input fields!",
   "error": true,
   "errors": [],
   "status": 400
 }
-So, as an example, we can now register ours generic error handling:
+So, as an example, we can now register our generic error handling:
 globalHandlers.registerMany({
-  //this key is sent by api when login is required
+  //this key is sent by API when login is required
   login_required: {
     message: 'Login required!',
     //the after function will be called when the message hides.
     after: () => console.log('redirect user to /login'),
   },
   no_input_data: 'You must fill form values here!',
-  //this key is sent by api on login error.
+  //this key is sent by API on login error.
   invalid_login: {
     message: 'Invalid credentials!',
   },
@@ -403,15 +403,15 @@ globalHandlers.registerMany({
   ERR_FR_TOO_MANY_REDIRECTS: 'Too many redirects.',
 })
 
-// you can registre only one:
+// you can register only one:
 globalHandlers.register('HttpError', (error) => {
-  //send email to developer that api return an 500 server internal console.error
-  return { message: 'Internal server errror! We already notify developers!' }
-  //when we return an valid ErrorHandlerObject, will be processed as whell.
-  //this allow we to perform custom behavior like sending email and default one,
-  //like showing an message to user.
+  //send an email to the developer that the API returned a 500 server internal console.error
+  return { message: 'Internal server error! We already notified the developers!' }
+  //when we return a valid ErrorHandlerObject, it will be processed as well.
+  //this allow us to perform custom behavior like sending an email, and the default one,
+  //like showing a message to the user.
 })
-We can register error handler in any place we like, group the most generic in one typescript file, and specific ones inline. You choose. But, to this work, we need to attach to ours http axios instance. This is done like this:
+We can register an error handler in any place we like, group the most generic in one typescript file, and specific ones inline. You choose. But, for this work, we need to attach it to our HTTP Axios instance. This is done like this:
 function createHttpInstance() {
   const instance = axios.create({})
   const responseError = (error: any) => globalHandlers.resposeErrorHandler(error)
@@ -428,10 +428,10 @@ http.get('/path/that/dont/exist').then((response) => {
   const userList = response.data
   console.log(userList)
 })
-The code above will show a Notify ballon on the user screen, because will fire the 404 error status code, that we registered before.
+The code above will show a Notify balloon on the user screen because it will fire the 404 error status code that we registered before.
 
-Customize for one http call
-The solution doesn't end here. Let's assume that, in one, only one http request, you want to handle 404 differently, but just 404. For that, we create the dealsWith function below:
+Customize for one HTTP call
+The solution doesn't end here. Let's assume that, in one, only one HTTP request, you want to handle 404 differently, but just 404. For that, we create the dealsWith function below:
 export function dealWith(solutions: ErrorHandlerMany, ignoreGlobal?: boolean) {
   let global
   if (ignoreGlobal === false) global = globalHandlers
@@ -446,7 +446,7 @@ import http from '/src/modules/http'
 // this call will show the message 'API Page Not Found!'
 http.get('/path/that/dont/exist')
 
-// this will show custom message: 'Custom 404 handler for this call only'
+// this will show a custom message: 'Custom 404 handler for this call only'
 // the raw is necessary because we need to turn off the global handler.
 http.get('/path/that/dont/exist', { raw: true }).catch(
   dealsWith({
@@ -455,7 +455,7 @@ http.get('/path/that/dont/exist', { raw: true }).catch(
 )
 
 // we can turn off global, and handle ourselves
-// if is not the error we want, let the global error take place.
+// if this is not the error we want, let the global error take place.
 http
   .get('/path/that/dont/exist', { raw: true })
   .catch((e) => {
@@ -472,11 +472,11 @@ http
     })
   )
 The Final Thoughts
-All this explanation is nice, but code, ah, the code, is so much better. So, i've created an github repository with all code from this article organized to you try out, improve and customize.
+All this explanation is nice, but code, ah, the code, is so much better. So, I've created a GitHub repository with all the code from this article organized for you to try out, improve and customize.
 
-Click here to access the repo in github.
+Click here to access the repo in GitHub.
 FOOTNOTES:
 
-This post became so much bigger than a first realize, but i love to share my thoughts.
-If you have some improvement to the code, please let me know in the comments.
-If you see something wrong, please, fix-me!
+This post became so much bigger than I first imagined, but I love to share my thoughts.
+If you have some improvements to the code, please let me know in the comments.
+If you see something wrong, please, fix me!
